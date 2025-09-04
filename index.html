@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radiance Face Cream — Glow Naturally</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blush: {
+              50: '#FFF9FA',
+              100: '#FDF1F3',
+              200: '#F9E6E8', /* soft blush */
+              300: '#F3D2D7',
+            },
+            gold: {
+              400: '#D4AF37', /* gold accent */
+            },
+          },
+          boxShadow: {
+            'soft': '0 10px 30px rgba(212, 175, 55, 0.12)',
+            'glow': '0 0 0 0 rgba(212,175,55,0.0)',
+          },
+          backgroundImage: {
+            'gold-gradient': 'linear-gradient(135deg, #F9E6E8 0%, #FFFFFF 50%, #F9E6E8 100%)',
+            'cta-gradient': 'linear-gradient(135deg, rgba(249,230,232,0.95) 0%, rgba(255,255,255,0.95) 60%, rgba(249,230,232,0.95) 100%)',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            shimmer: { '0%': { backgroundPosition: '0% 50%' }, '100%': { backgroundPosition: '200% 50%' } },
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          },
+          animation: {
+            float: 'float 4s ease-in-out infinite',
+            shimmer: 'shimmer 2.25s linear infinite',
+            fadeUp: 'fadeUp 800ms cubic-bezier(.2,.6,.2,1) forwards',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <!-- Swiper (carousel) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <style>
+    :root {
+      --reveal-stagger: 80ms; /* easy global tweak */
+    }
+    .reveal { opacity: 0; transform: translateY(24px); }
+    .reveal.visible { opacity: 1; transform: translateY(0); transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
+    .reveal[data-delay] { transition-delay: var(--delay); }
+
+    /* subtle gold border effect */
+    .gold-outline { box-shadow: inset 0 0 0 1px rgba(212,175,55,0.35); }
+
+    /* micro glow on hover */
+    .btn-glow:hover { box-shadow: 0 10px 30px rgba(212,175,55,.35), 0 0 0 4px rgba(212,175,55,.08); transform: translateY(-1px); }
+    .btn-glow:active { transform: translateY(0); }
+
+    /* smooth scrolling */
+    html { scroll-behavior: smooth; }
+      .video-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
+  
+.video-container {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .video-container video {
+    transition: transform 0.3s ease;
+  }
+  
+  .video-container:hover video {
+    transform: scale(1.03);
+  }
+  
+  .video-play-button {
+    transition: all 0.3s ease;
+  }
+  
+  .video-play-button:hover > div {
+    transform: scale(1.1);
+    background: rgba(212, 175, 55, 1);
+  }
+  
+  /* Hide play button when video is playing */
+  .video-playing .video-play-button {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+  
+  /* Improved image containers */
+  .img-zoom {
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+  }
+  
+  .img-zoom:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+    /* parallax */
+    .parallax {
+      background-attachment: fixed; /* graceful fallback for mobile: many browsers ignore */
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* image zoom micro-animation */
+    .img-zoom { transition: transform .6s ease; }
+    .img-zoom:hover { transform: scale(1.04); }
+    
+    /* Custom tabs */
+    .tab-button {
+    @apply px-5 py-3 rounded-full text-sm font-semibold transition-all duration-300;
+    border: 2px solid transparent;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .tab-button.active {
+    @apply bg-gold-400 text-white;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+    transform: translateY(-2px);
+  }
+  .tab-button:not(.active) {
+    @apply bg-white text-slate-700;
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  .tab-button:not(.active):hover {
+    @apply bg-blush-100 border-gold-400;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  /* Add a subtle animation for tab content switching */
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .tab-content.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  </style>
+</head>
+<body class="bg-blush-100 text-slate-800 antialiased [font-family:Poppins,ui-sans-serif]">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-white/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-blush-200 to-white gold-outline">
+          <i class="fa-solid fa-sparkles text-gold-400"></i>
+        </span>
+        <span class="[font-family:'Playfair_Display',serif] text-xl font-semibold">BeautyRoom</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#features" class="hover:text-gold-400 transition-colors">Features</a>
+        <a href="#products" class="hover:text-gold-400 transition-colors">Products</a>
+        <a href="#details" class="hover:text-gold-400 transition-colors">Details</a>
+        <a href="#testimonials" class="hover:text-gold-400 transition-colors">Reviews</a>
+        <a href="#order" class="hover:text-gold-400 transition-colors">Offer</a>
+      </nav>
+      <a href="#shopnow" class="btn-glow rounded-full px-5 py-2 bg-gold-400 text-white text-sm font-medium shadow-soft transition-all">
+        Shop Now
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gold-gradient"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal" style="--delay:0ms">
+        <h1 class="[font-family:'Playfair_Display',serif] text-4xl sm:text-5xl lg:text-6xl leading-tight text-slate-900">
+          Glow Naturally with <span class="text-gold-400">Collagen Night Wrapping Mask</span> Face Cream
+        </h1>
+        <p class="mt-4 text-lg text-slate-700">
+          Hydrate, Nourish &amp; Shine with Confidence
+        </p>
+        <div class="mt-8 flex items-center gap-4">
+          <a href="#shopnow" class="btn-glow inline-flex items-center gap-2 rounded-full px-6 py-3 bg-gold-400 text-white font-semibold shadow-soft transition-all">
+            <i class="fa-solid fa-bag-shopping"></i> Shop Now
+          </a>
+          <a href="#details" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-slate-700 gold-outline hover:shadow-soft transition-all">
+            Learn More <i class="fa-solid fa-arrow-right-long"></i>
+          </a>
+        </div>
+        <div class="mt-6 text-sm text-slate-600 flex items-center gap-3">
+          <i class="fa-solid fa-shield-heart text-gold-400"></i> Dermatologist Tested • Clean Ingredients • Cruelty-Free
+        </div>
+      </div>
+
+      <div class="relative reveal" style="--delay:120ms">
+        <!-- soft glow jar -->
+        <div class="absolute -inset-10 bg-gold-400/10 blur-3xl rounded-full"></div>
+        <div class="relative mx-auto max-w-md">
+          <img
+            src="hero.png"
+            alt="Radiance Face Cream Jar"
+            class="rounded-3xl shadow-2xl img-zoom animate-float"
+            style="animation: float 6s ease-in-out infinite;"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+ <!-- FEATURES -->
+<!-- FEATURES -->
+<section id="features" class="py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="[font-family:'Playfair_Display',serif] text-3xl sm:text-4xl text-center text-slate-900 reveal" style="--delay:0ms">
+      Why You'll Love It
+    </h2>
+    <p class="text-center mt-2 text-slate-600 reveal" style="--delay:80ms">Thoughtfully formulated to make your skin look lit-from-within.</p>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Card 1 -->
+      <div class="reveal" style="--delay:0ms">
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-soft gold-outline h-full flex flex-col">
+          <div class="h-52 w-full mb-4 rounded-xl overflow-hidden relative bg-blush-100 flex items-center justify-center">
+            <img src="image1.jpg" 
+                 alt="Deep Hydration" 
+                 class="w-full h-full object-contain img-zoom p-4">
+          </div>
+          <div class="h-12 w-12 rounded-full flex items-center justify-center bg-blush-200">
+            <i class="fa-solid fa-droplet text-gold-400 text-xl"></i>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900">Deep Hydration</h3>
+          <p class="mt-2 text-sm text-slate-600">Locks in moisture for 24-hour plump, dewy skin.</p>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="reveal" style="--delay:80ms">
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-soft gold-outline h-full flex flex-col">
+          <div class="h-52 w-full mb-4 rounded-xl overflow-hidden relative bg-blush-100 flex items-center justify-center">
+            <img src="image2.jpg" 
+                 alt="Natural Ingredients" 
+                 class="w-full h-full object-contain img-zoom p-4">
+          </div>
+          <div class="h-12 w-12 rounded-full flex items-center justify-center bg-blush-200">
+            <i class="fa-solid fa-leaf text-gold-400 text-xl"></i>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900">Natural Ingredients</h3>
+          <p class="mt-2 text-sm text-slate-600">Botanical extracts to soothe, brighten, and balance.</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="reveal" style="--delay:160ms">
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-soft gold-outline h-full flex flex-col">
+          <div class="h-52 w-full mb-4 rounded-xl overflow-hidden relative bg-blush-100 flex items-center justify-center">
+            <img src="images3.jpg" 
+                 alt="Anti-Aging Support" 
+                 class="w-full h-full object-contain img-zoom p-4">
+          </div>
+          <div class="h-12 w-12 rounded-full flex items-center justify-center bg-blush-200">
+            <i class="fa-solid fa-sparkles text-gold-400 text-xl"></i>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900">Anti-Aging Support</h3>
+          <p class="mt-2 text-sm text-slate-600">Softens fine lines and boosts youthful radiance.</p>
+        </div>
+      </div>
+      
+      <!-- Card 4 with Video -->
+      <div class="reveal" style="--delay:240ms">
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-soft gold-outline h-full flex flex-col">
+          <div class="h-52 w-full mb-4 rounded-xl overflow-hidden bg-blush-200 flex items-center justify-center relative video-container">
+            <video class="w-full h-full object-cover rounded-xl" poster="beauty6.jpg">
+              <source src="beauty.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-play-button absolute inset-0 flex items-center justify-center bg-black/30 opacity-100 hover:opacity-100 transition-opacity rounded-xl cursor-pointer">
+              <div class="bg-gold-400/90 text-white rounded-full w-14 h-14 flex items-center justify-center">
+                <i class="fa-solid fa-play text-xl ml-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="h-12 w-12 rounded-full flex items-center justify-center bg-blush-200">
+            <i class="fa-solid fa-user-nurse text-gold-400 text-xl"></i>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900">Dermatologist Tested</h3>
+          <p class="mt-2 text-sm text-slate-600">Gentle, effective, and suitable for all skin types.</p>
+          <button class="video-trigger mt-3 text-xs text-gold-400 font-medium flex items-center gap-1 hover:text-gold-500 transition-colors">
+            <i class="fa-solid fa-play"></i> Watch video demonstration
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get video elements
+    const videoContainers = document.querySelectorAll('.video-container');
+    
+    videoContainers.forEach(container => {
+      const video = container.querySelector('video');
+      const playButton = container.querySelector('.video-play-button');
+      const videoTrigger = container.closest('.flex.flex-col').querySelector('.video-trigger');
+      
+      // Play video when clicking play button
+      if (playButton) {
+        playButton.addEventListener('click', function() {
+          video.play();
+          container.classList.add('video-playing');
+        });
+      }
+      
+      // Play video when clicking text trigger
+      if (videoTrigger) {
+        videoTrigger.addEventListener('click', function() {
+          video.play();
+          container.classList.add('video-playing');
+        });
+      }
+      
+      // Show play button again when video ends
+      if (video) {
+        video.addEventListener('ended', function() {
+          container.classList.remove('video-playing');
+        });
+        
+        video.addEventListener('pause', function() {
+          container.classList.remove('video-playing');
+        });
+      }
+    });
+  });
+</script>
+
+
+
+
+  <!-- PRODUCT DETAILS SECTION -->
+  <section id="details" class="py-16 sm:py-20 bg-white" >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="[font-family:'Playfair_Display',serif] text-3xl sm:text-4xl text-center text-slate-900 reveal" style="--delay:0ms">
+        Product Details
+      </h2>
+      
+      <!-- Tabs Navigation -->
+      <div class="mt-8 flex justify-center gap-2 flex-wrap reveal" style="--delay:80ms">
+        <button class="tab-button active" data-tab="overview">Overview</button>
+        <button class="tab-button" data-tab="ingredients">Key Ingredients</button>
+        <button class="tab-button" data-tab="benefits">Benefits</button>
+        <button class="tab-button" data-tab="usage">How To Use</button>
+        <button class="tab-button" data-tab="video">Video</button>
+      </div>
+      
+      <!-- Tab Contents -->
+      <div class="mt-8">
+        <!-- Overview Tab -->
+        <div class="tab-content active" id="overview">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="reveal" style="--delay:0ms">
+              <h3 class="text-xl font-semibold text-slate-900">About Our Night Wrapping Mask</h3>
+              <ul class="mt-4 space-y-3 text-slate-700">
+                <li class="flex items-start">
+                  <span class="text-gold-400 mr-2 mt-1">•</span>
+                  <span>Intensive care to increase skin elasticity: Provide intensive care to the skin while you sleep to help protect and enhance its elasticity.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-gold-400 mr-2 mt-1">•</span>
+                  <span>Use it for 8 hours overnight to help you wake up with firmer, more elastic skin.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-gold-400 mr-2 mt-1">•</span>
+                  <span>It has a film-forming tear-off effect and is specially designed for night use, allowing your skin to deeply absorb nourishing ingredients while resting.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-gold-400 mr-2 mt-1">•</span>
+                  <span>Firms the skin, increases skin elasticity, deeply hydrates the skin, rejuvenates the skin from deep and restores the skin's radiance.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-gold-400 mr-2 mt-1">•</span>
+                  <span>Suitable for all skin types, whether you have sensitive, oily, dry or combination skin.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="reveal" style="--delay:120ms">
+              <img src="beauty11.jpg" 
+                   alt="Radiance Night Cream Application" 
+                   class="rounded-2xl shadow-soft img-zoom">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Ingredients Tab -->
+        <div class="tab-content" id="ingredients">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="reveal" style="--delay:0ms">
+              <h3 class="text-xl font-semibold text-slate-900">Powerful Ingredients</h3>
+              <div class="mt-6 space-y-6">
+                <div class="bg-blush-50 rounded-xl p-4 gold-outline">
+                  <h4 class="font-semibold text-gold-400">Hydrolyzed Collagen</h4>
+                  <p class="mt-1 text-slate-700">Increases skin elasticity and firmness, helping to reduce the appearance of fine lines and wrinkles.</p>
+                </div>
+                <div class="bg-blush-50 rounded-xl p-4 gold-outline">
+                  <h4 class="font-semibold text-gold-400">Ceramide NP</h4>
+                  <p class="mt-1 text-slate-700">Strengthens the skin's protective barrier and locks in moisture.</p>
+                </div>
+                <div class="bg-blush-50 rounded-xl p-4 gold-outline">
+                  <h4 class="font-semibold text-gold-400">Glycerin</h4>
+                  <p class="mt-1 text-slate-700">Acts as a humectant, absorbing moisture into the skin to keep it hydrated, smooth and soft.</p>
+                </div>
+              </div>
+            </div>
+            <div class="reveal" style="--delay:120ms">
+              <img src="beauty1.jpg" 
+                   alt="Natural Ingredients" 
+                   class="rounded-2xl shadow-soft img-zoom">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Benefits Tab -->
+        <div class="tab-content" id="benefits">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="reveal" style="--delay:0ms">
+              <h3 class="text-xl font-semibold text-slate-900">Key Benefits</h3>
+              <div class="mt-6 space-y-4">
+                <div class="flex items-start">
+                  <div class="h-10 w-10 rounded-full bg-blush-200 flex items-center justify-center flex-shrink-0 mr-4">
+                    <i class="fa-solid fa-heart-circle-check text-gold-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold">Overnight Repair</h4>
+                    <p class="mt-1 text-slate-700">Works while you sleep to repair and rejuvenate your skin.</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="h-10 w-10 rounded-full bg-blush-200 flex items-center justify-center flex-shrink-0 mr-4">
+                    <i class="fa-solid fa-droplet text-gold-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold">Deep Hydration</h4>
+                    <p class="mt-1 text-slate-700">Provides intense moisture that lasts through the night.</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="h-10 w-10 rounded-full bg-blush-200 flex items-center justify-center flex-shrink-0 mr-4">
+                    <i class="fa-solid fa-shield text-gold-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold">Barrier Protection</h4>
+                    <p class="mt-1 text-slate-700">Strengthens skin's natural barrier against environmental stressors.</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="h-10 w-10 rounded-full bg-blush-200 flex items-center justify-center flex-shrink-0 mr-4">
+                    <i class="fa-solid fa-sparkles text-gold-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold">Radiant Glow</h4>
+                    <p class="mt-1 text-slate-700">Wake up to brighter, more radiant-looking skin.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal" style="--delay:120ms">
+              <img src="beauty7.jpg" 
+                   alt="Glowing Skin Benefits" 
+                   class="rounded-2xl shadow-soft img-zoom">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Usage Tab -->
+        <div class="tab-content" id="usage">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="reveal" style="--delay:0ms">
+              <h3 class="text-xl font-semibold text-slate-900">How To Use</h3>
+              <div class="mt-6 space-y-6">
+                <div class="flex">
+                  <div class="h-10 w-10 rounded-full bg-gold-400 flex items-center justify-center flex-shrink-0 mr-4 text-white font-bold">1</div>
+                  <div>
+                    <h4 class="font-semibold">Cleanse & Prep</h4>
+                    <p class="mt-1 text-slate-700">After washing, in the final stage of skin care, apply an appropriate amount to the entire face except around the eyelids.</p>
+                  </div>
+                </div>
+                <div class="flex">
+                  <div class="h-10 w-10 rounded-full bg-gold-400 flex items-center justify-center flex-shrink-0 mr-4 text-white font-bold">2</div>
+                  <div>
+                    <h4 class="font-semibold">Wait to Dry</h4>
+                    <p class="mt-1 text-slate-700">Wait for drying for about 15 minutes before going to bed.</p>
+                  </div>
+                </div>
+                <div class="flex">
+                  <div class="h-10 w-10 rounded-full bg-gold-400 flex items-center justify-center flex-shrink-0 mr-4 text-white font-bold">3</div>
+                  <div>
+                    <h4 class="font-semibold">Morning Routine</h4>
+                    <p class="mt-1 text-slate-700">Remove the mask or rinse with warm water the next morning.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 bg-blush-50 rounded-xl p-4 gold-outline">
+                <h4 class="font-semibold text-gold-400">Notice</h4>
+                <p class="mt-1 text-slate-700">To prevent leaks or ruptures during sealing, the tube is filled to only 80% capacity, allowing for sufficient headspace.</p>
+              </div>
+            </div>
+            <div class="reveal" style="--delay:120ms">
+              <img src="beauty11.jpg" 
+                   alt="How to use Radiance Cream" 
+                   class="rounded-2xl shadow-soft img-zoom">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Video Tab -->
+                <!-- Video Tab -->
+       <!-- Video Tab -->
+<div class="tab-content" id="video">
+  <div class="max-w-4xl mx-auto reveal" style="--delay:0ms">
+    <h3 class="text-xl font-semibold text-slate-900 text-center mb-6">Product Video</h3>
+    <div class="aspect-w-16 aspect-h-9 bg-blush-200 rounded-2xl overflow-hidden shadow-soft">
+      <video class="w-full h-auto" controls poster="images/beauty-thumbnail.jpg">
+        <source src="beauty.mp4" type="video/mp4">
+        <source src="beauty.webm" type="video/webm">
+        <p>Your browser does not support the video tag. Please <a href="videos/beauty.mp4" download>download the video</a> to watch it.</p>
+      </video>
+    </div>
+    <p class="text-center mt-6 text-slate-600">See how our Night Wrapping Mask transforms your skincare routine overnight</p>
+  </div>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE (Swiper Carousel) -->
+  <section id="products" class="py-16 sm:py-20 bg-blush-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="[font-family:'Playfair_Display',serif] text-3xl sm:text-4xl text-slate-900 reveal" style="--delay:0ms">Shop the Collection</h2>
+          <p class="text-slate-600 mt-2 reveal" style="--delay:80ms">Explore our signature glow essentials.</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-3 reveal" style="--delay:120ms">
+          <button id="prevBtn" class="h-10 w-10 rounded-full gold-outline hover:bg-blush-200 transition flex items-center justify-center"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="nextBtn" class="h-10 w-10 rounded-full gold-outline hover:bg-blush-200 transition flex items-center justify-center"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div class="mt-8 swiper reveal" style="--delay:120ms">
+        <div class="swiper-wrapper">
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="rounded-3xl overflow-hidden shadow-soft gold-outline bg-white">
+              <img class="w-full h-72 object-cover img-zoom" src="beauty1.jpg" alt="Radiance Classic Cream">
+              <div class="p-6">
+                <h3 class="font-semibold text-slate-900">Turmeric Night Wrapping Mask</h3>
+                <p class="text-sm text-slate-600 mt-1">Daily glow moisturizer</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="font-semibold text-gold-400">Basic N17,000</span>
+                  <a href="#shopnow" class="text-sm px-4 py-2 rounded-full bg-gold-400 text-white btn-glow">Order</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="rounded-3xl overflow-hidden shadow-soft gold-outline bg-white">
+              <img class="w-full h-72 object-cover img-zoom" src="beauty6.jpg" alt="Radiance Night Repair">
+              <div class="p-6">
+                <h3 class="font-semibold text-slate-900">Turmeric Night cream</h3>
+                <p class="text-sm text-slate-600 mt-1">Overnight hydration boost</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="font-semibold text-gold-400">Recommended N32,000</span>
+                  <a href="#shopnow" class="text-sm px-4 py-2 rounded-full bg-gold-400 text-white btn-glow">Order</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="rounded-3xl overflow-hidden shadow-soft gold-outline bg-white">
+              <img class="w-full h-72 object-cover img-zoom" src="beauty7.jpg" alt="Radiance Vitamin C">
+              <div class="p-6">
+                <h3 class="font-semibold text-slate-900">Collagen Night Wrapping Mask</h3>
+                <p class="text-sm text-slate-600 mt-1">Brightening day cream</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="font-semibold text-gold-400">Best package N45,000</span>
+                  <a href="#shopnow" class="text-sm px-4 py-2 rounded-full bg-gold-400 text-white btn-glow">Order</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="rounded-3xl overflow-hidden shadow-soft gold-outline bg-white">
+              <img class="w-full h-72 object-cover img-zoom" src="beauty2.jpg">
+              <div class="p-6">
+                <h3 class="font-semibold text-slate-900">Radiance SPF 30</h3>
+                <p class="text-sm text-slate-600 mt-1">Protect + glow</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="font-semibold text-gold-400">N62,500</span>
+                  <a href="#shopnow" class="text-sm px-4 py-2 rounded-full bg-gold-400 text-white btn-glow">Order</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination (bullets) -->
+        <div class="swiper-pagination !relative mt-6"></div>
+      </div>
+    </div>
+  </section>
+<!-- PRODUCT SELECTION SECTION -->
+<section class="py-16 sm:py-20 bg-white" id="shopnow">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="[font-family:'Playfair_Display',serif] text-3xl sm:text-4xl text-center text-slate-900">
+      Choose Your Package
+    </h2>
+    <p class="text-center mt-2 text-slate-600">Select the option that works best for you</p>
+
+    <div class="mt-10 space-y-6">
+      <!-- Basic Package -->
+      <div>
+        <input type="radio" name="package" id="basic-package" class="hidden" value="basic">
+        <label for="basic-package" class="package-option flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-blush-50 rounded-2xl p-6 border border-gold-400/30 cursor-pointer transition-all hover:shadow-md">
+          <div class="flex items-center gap-4 flex-grow">
+            <div class="relative">
+              <div class="h-6 w-6 rounded-full border-2 border-gold-400 flex items-center justify-center transition-all">
+                <div class="h-3 w-3 rounded-full bg-gold-400 opacity-0 transition-opacity"></div>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-semibold text-slate-900">Basic</h3>
+              <p class="text-sm text-slate-600 mt-1">Buy 1 with free delivery</p>
+            </div>
+          </div>
+          <div class="sm:text-right">
+            <div class="text-2xl font-bold text-gold-400">₦17,000</div>
+            <div class="text-sm text-slate-500 mt-1">One-time purchase</div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Recommended Package -->
+      <div>
+        <input type="radio" name="package" id="recommended-package" class="hidden" value="recommended" checked>
+        <label for="recommended-package" class="package-option flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white rounded-2xl p-6 shadow-md border-2 border-gold-400 cursor-pointer transition-all relative">
+          <div class="absolute -top-2 left-4 bg-gold-400 text-white text-xs font-bold px-3 py-1 rounded-full">
+            MOST POPULAR
+          </div>
+          <div class="flex items-center gap-4 flex-grow">
+            <div class="relative">
+              <div class="h-6 w-6 rounded-full border-2 border-gold-400 flex items-center justify-center transition-all">
+                <div class="h-3 w-3 rounded-full bg-gold-400 opacity-100 transition-opacity"></div>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-semibold text-slate-900">Recommended</h3>
+              <p class="text-sm text-slate-600 mt-1">Buy 2 with free delivery</p>
+            </div>
+          </div>
+          <div class="sm:text-right">
+            <div class="text-2xl font-bold text-gold-400">₦32,000</div>
+            <div class="text-sm text-slate-500 mt-1">Save ₦2,000</div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Best Package -->
+      <div>
+        <input type="radio" name="package" id="best-package" class="hidden" value="best">
+        <label for="best-package" class="package-option flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-blush-50 rounded-2xl p-6 border border-gold-400/30 cursor-pointer transition-all hover:shadow-md">
+          <div class="flex items-center gap-4 flex-grow">
+            <div class="relative">
+              <div class="h-6 w-6 rounded-full border-2 border-gold-400 flex items-center justify-center transition-all">
+                <div class="h-3 w-3 rounded-full bg-gold-400 opacity-0 transition-opacity"></div>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-semibold text-slate-900">Best Package</h3>
+              <p class="text-sm text-slate-600 mt-1">Buy 3 + 1 free with free delivery</p>
+            </div>
+          </div>
+          <div class="sm:text-right">
+            <div class="text-2xl font-bold text-gold-400">₦45,000</div>
+            <div class="text-sm text-slate-500 mt-1">Save ₦23,000</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <button id="order-button" class="order-btn inline-flex items-center gap-2 rounded-full px-8 py-4 bg-gold-400 text-white font-semibold shadow-md transition-all hover:bg-gold-500 hover:shadow-lg">
+        <i class="fa-solid fa-bag-shopping"></i> Order Now
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Custom styles for the product selection */
+  .package-option {
+    transition: all 0.3s ease;
+  }
+  
+  .package-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  input[type="radio"]:checked + label {
+    background-color: rgba(212, 175, 55, 0.05);
+  }
+  
+  .order-btn {
+    background: #D4AF37;
+    transition: all 0.3s ease;
+  }
+  
+  .order-btn:hover {
+    background: #C19B2E;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle package selection
+    const packageInputs = document.querySelectorAll('input[name="package"]');
+    const orderButton = document.getElementById('order-button');
+    
+    packageInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        // Update visual selection state
+        document.querySelectorAll('.package-option').forEach(option => {
+          option.classList.remove('border-2', 'border-gold-400');
+          option.querySelector('.h-3').classList.remove('opacity-100');
+          option.querySelector('.h-3').classList.add('opacity-0');
+        });
+        
+        if (this.checked) {
+          const label = this.nextElementSibling;
+          label.classList.add('border-2', 'border-gold-400');
+          label.querySelector('.h-3').classList.remove('opacity-0');
+          label.querySelector('.h-3').classList.add('opacity-100');
+        }
+      });
+    });
+    
+    // Initialize the selected package
+    const selectedInput = document.querySelector('input[name="package"]:checked');
+    if (selectedInput) {
+      const label = selectedInput.nextElementSibling;
+      label.classList.add('border-2', 'border-gold-400');
+      label.querySelector('.h-3').classList.remove('opacity-0');
+      label.querySelector('.h-3').classList.add('opacity-100');
+    }
+    
+    // Handle order button click
+    orderButton.addEventListener('click', function() {
+      const selectedPackage = document.querySelector('input[name="package"]:checked');
+      if (!selectedPackage) return;
+      
+      let packageName, packagePrice;
+      
+      switch(selectedPackage.value) {
+        case 'basic':
+          packageName = 'Basic Package (Buy 1)';
+          packagePrice = '₦17,000';
+          break;
+        case 'recommended':
+          packageName = 'Recommended Package (Buy 2)';
+          packagePrice = '₦32,000';
+          break;
+        case 'best':
+          packageName = 'Best Package (Buy 3 + 1 free)';
+          packagePrice = '₦45,000';
+          break;
+      }
+      
+      // Create WhatsApp message
+      const message = `Hello! I would like to order the ${packageName} for ${packagePrice}.`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/2348154222372?text=${encodedMessage}`;
+      
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
+    });
+  });
+</script>
+
+  <!-- CTA (Parallax) -->
+ <!--  <section id="order" class="relative">
+    <div
+      class="parallax relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1800&auto=format&fit=crop');
+      "
+    >
+      <div class="bg-cta-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-28">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="reveal" style="--delay:0ms">
+              <h2 class="[font-family:'Playfair_Display',serif] text-3xl sm:text-4xl text-slate-900">
+                Order Now &amp;
+                                <span class="text-gold-400">Glow Tonight</span>
+              </h2>
+              <p class="mt-4 text-lg text-slate-700">
+                Try our Night Wrapping Mask risk-free with our 30-day money-back guarantee.
+              </p>
+              <ul class="mt-6 space-y-3 text-slate-700">
+                <li class="flex items-center gap-3">
+                  <i class="fa-solid fa-check-circle text-gold-400"></i>
+                  <span>Free shipping on orders</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fa-solid fa-check-circle text-gold-400"></i>
+                  <span>Secure checkout</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fa-solid fa-check-circle text-gold-400"></i>
+                  <span>Dermatologist approved</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="reveal" style="--delay:120ms">
+              <div class="bg-white/90 backdrop-blur rounded-3xl p-6 sm:p-8 shadow-2xl gold-outline">
+                <h3 class="text-xl font-semibold text-slate-900">Radiance Night Wrapping Mask</h3>
+                <div class="mt-4 flex items-baseline gap-2">
+                  <span class="text-3xl font-bold text-gold-400">N50,000</span>
+                  <span class="text-slate-500 line-through">N70,000</span>
+                  <span class="ml-auto bg-blush-200 text-gold-400 font-semibold px-3 py-1 rounded-full text-sm">33% OFF</span>
+                </div>
+
+                <div class="mt-6 bg-blush-50 rounded-xl p-4">
+                  <p class="text-sm text-slate-700"><i class="fa-solid fa-bolt text-gold-400 mr-2"></i> <strong>Limited Time Offer:</strong> Free shipping + free sample with every order</p>
+                </div>
+
+                <a href="#" class="btn-glow mt-6 w-full inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 bg-gold-400 text-white font-semibold shadow-soft transition-all">
+                  <i class="fa-solid fa-lock"></i> Secure Checkout
+                </a>
+
+                <div class="mt-4 text-center">
+                  <img src="https://i.ibb.co/QfZS6Mc/payment-icons.png" alt="Accepted payment methods" class="inline-block h-8">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- FAQ SECTION -->
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="[font-family:'Playfair_Display',serif] text-3xl sm:text-4xl text-center text-slate-900 reveal" style="--delay:0ms">
+        Frequently Asked Questions
+      </h2>
+
+      <div class="mt-10 space-y-4">
+        <!-- FAQ Item -->
+        <details class="reveal bg-blush-50 rounded-2xl gold-outline overflow-hidden" style="--delay:0ms">
+          <summary class="p-6 cursor-pointer font-semibold text-slate-900 flex items-center justify-between">
+            How often should I use the Night Wrapping Mask?
+            <i class="fa-solid fa-chevron-down text-gold-400 transition-transform"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-slate-700">
+            For best results, we recommend using it 2-3 times per week. Those with very dry skin may use it every night.
+          </div>
+        </details>
+
+        <!-- FAQ Item -->
+        <details class="reveal bg-blush-50 rounded-2xl gold-outline overflow-hidden" style="--delay:80ms">
+          <summary class="p-6 cursor-pointer font-semibold text-slate-900 flex items-center justify-between">
+            Is this product suitable for sensitive skin?
+            <i class="fa-solid fa-chevron-down text-gold-400 transition-transform"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-slate-700">
+            Yes! Our formula is dermatologist-tested, fragrance-free, and non-comedogenic, making it suitable for all skin types, including sensitive skin.
+          </div>
+        </details>
+
+        <!-- FAQ Item -->
+        <details class="reveal bg-blush-50 rounded-2xl gold-outline overflow-hidden" style="--delay:160ms">
+          <summary class="p-6 cursor-pointer font-semibold text-slate-900 flex items-center justify-between">
+            How long does one jar last?
+            <i class="fa-solid fa-chevron-down text-gold-400 transition-transform"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-slate-700">
+            When used 2-3 times per week, one 50ml jar typically lasts approximately 2-3 months.
+          </div>
+        </details>
+
+        <!-- FAQ Item -->
+        <details class="reveal bg-blush-50 rounded-2xl gold-outline overflow-hidden" style="--delay:240ms">
+          <summary class="p-6 cursor-pointer font-semibold text-slate-900 flex items-center justify-between">
+            What is your return policy?
+            <i class="fa-solid fa-chevron-down text-gold-400 transition-transform"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-slate-700">
+            We offer a 30-day money-back guarantee. If you're not completely satisfied, simply contact our customer service team for a full refund.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <a href="#" class="flex items-center gap-2">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-blush-200 to-white">
+              <i class="fa-solid fa-sparkles text-gold-400"></i>
+            </span>
+            <span class="[font-family:'Playfair_Display',serif] text-xl font-semibold">BeautyRoom</span>
+          </a>
+          <p class="mt-4 text-blush-200 max-w-md">
+            Naturally derived skincare for that lit-from-within glow. Ethically made, scientifically proven.
+          </p>
+          <div class="mt-6 flex items-center gap-4">
+            <a href="#" class="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-gold-400 transition-colors">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-gold-400 transition-colors">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="#" class="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-gold-400 transition-colors">
+              <i class="fa-brands fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-3 text-blush-200">
+            <li><a href="#features" class="hover:text-gold-400 transition-colors">Features</a></li>
+            <li><a href="#products" class="hover:text-gold-400 transition-colors">Products</a></li>
+            <li><a href="#details" class="hover:text-gold-400 transition-colors">Details</a></li>
+            <li><a href="#testimonials" class="hover:text-gold-400 transition-colors">Reviews</a></li>
+            <li><a href="#order" class="hover:text-gold-400 transition-colors">Offer</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Support</h4>
+          <ul class="space-y-3 text-blush-200">
+            <li><a href="#" class="hover:text-gold-400 transition-colors">Contact Us</a></li>
+            <li><a href="#" class="hover:text-gold-400 transition-colors">Shipping & Returns</a></li>
+            <li><a href="#" class="hover:text-gold-400 transition-colors">FAQ</a></li>
+            <li><a href="#" class="hover:text-gold-400 transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-gold-400 transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500">
+        <p>© 2024 Radiance Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swiper
+    const swiper = new Swiper('.swiper', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '#nextBtn',
+        prevEl: '#prevBtn',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+    });
+
+    // Tab functionality
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons and contents
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Show corresponding content
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Reveal on scroll
+    function revealOnScroll() {
+      const elements = document.querySelectorAll('.reveal');
+      elements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < window.innerHeight - elementVisible) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+    revealOnScroll(); // Initial check
+
+    // FAQ accordion animation
+    document.querySelectorAll('details').forEach(detail => {
+      detail.querySelector('summary').addEventListener('click', function(e) {
+        e.preventDefault();
+        const isOpen = detail.hasAttribute('open');
+        
+        // Close all other open details
+        if (!isOpen) {
+          document.querySelectorAll('details[open]').forEach(openDetail => {
+            if (openDetail !== detail) {
+              openDetail.removeAttribute('open');
+            }
+          });
+        }
+        
+        // Toggle this detail
+        detail.toggleAttribute('open');
+      });
+    });
+  </script>
+</body>
+</html>
